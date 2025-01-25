@@ -22,11 +22,14 @@ export function CardPost({ author, createdAt, subtitle, title, urlImage, slug }:
                     src={urlImage}
                     alt=""
                     fill={true}
-                    style={{ objectFit: "cover" }}
+                    style={{
+                        objectFit: "cover",
+                        borderRadius: "50px"
+                    }}
                 />
             </div>
 
-            <div className="flex w-full flex-1 flex-col justify-between gap-1 sm:gap-2">
+            <div className="flex w-full flex-col gap-8">
                 <h1 className="font-bold text-lg sm:text-xl text-blue-600">{title}</h1>
                 <p className="text-zinc-600 hidden md:flex flex-1 text-justify lg:text-left text-sm">{subtitle}</p>
 
