@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Header } from "@/components/Header";
+import Link from 'next/link'
+
 
 export default function Home() {
   return (
@@ -15,7 +17,9 @@ export default function Home() {
       <div className="w-full max-w-[1120px] flex flex-col mx-auto pb-12">
         <Header />
 
-        <div className="w-full h-full flex gap-8 items-center justify-center mt-12">
+        <Link 
+        href="/post"
+        className="w-full h-full flex gap-8 items-center justify-center mt-12 hover:brightness-75 transition-all">
           <div className="flex flex-1 h-[334px] relative rounded-2xl overFlow-hidden">
             <Image
               src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -37,7 +41,7 @@ export default function Home() {
               <p className="text-zinc-600 text-sm">31 de janeiro de 2025</p>
             </div>
           </div>
-        </div>
+        </Link>
 
       </div>
     </>

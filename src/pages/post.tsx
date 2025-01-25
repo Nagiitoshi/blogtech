@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Header } from "@/components/Header";
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react';
 
 export default function Home() {
     return (
@@ -14,6 +16,12 @@ export default function Home() {
 
             <div className="w-full max-w-[1120px] flex flex-col mx-auto pb-12">
                 <Header />
+                <Link
+                    className="flex w-full max-w-fit px-4 font-bold text-zinc-900 hover:text-zinc-600"
+                    href="/"
+                >
+                    <ArrowLeft className="mr-0 h-6 w-5" /> Voltar
+                </Link>
 
                 <div className="w-full h-full flex flex-col mt-8 ">
                     <div className="flex w-full h-[334px] relative rounded-2xl overFlow-hidden">
@@ -29,13 +37,20 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="flex w-full h-[334px] flex-col gap-6">
+                <div className="flex w-full h-[334px] flex-col mt-8">
                     <h1 className="font-blod text-[40px] text-blue-600">Como desevolver um blog com Next.js</h1>
-                    <p className="text-zinc-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore consequuntur, eligendi ipsam possimus voluptatum molestiae culpa omnis aperiam facilis officiis! Temporibus illo recusandae quisquam quas facilis architecto corrupti praesentium dolores.</p>
                     <div>
                         <p className="font-bold text-zinc-900">Nagi Itoshi</p>
                         <p className="text-zinc-600 text-sm">31 de janeiro de 2025</p>
                     </div>
+                    <p className="text-zinc-600 mt-8">
+                        Lorem ipsum, dolor sit amet consecteturadipisicing elit. Dolore consequuntur, eligendi ipsam possimus voluptatum molestiae culpa omnis aperiam facilis officiis! Temporibus illo recusandae quisquam quas facilis architecto corrupti praesentium dolores.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi expedita iusto natus recusandae necessitatibus tempore eligendi? Veniam velit nihil temporibus non. Aperiam repellendus quis tempore. Sed itaque tempore ab?
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam, dolorem veniam non distinctio cumque reiciendis, molestiae quibusdam tempora enim ad inventore a, dignissimos laborum beatae. Nemo repudiandae esse perferendis vel.
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas dicta ad beatae assumenda vel voluptatibus perspiciatis dolores, minima voluptates, officiis id vitae maiores fuga possimus eius reiciendis, dolor sed ab.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aperiam, deserunt odit consequatur et numquam officiis quaerat voluptas cupiditate explicabo excepturi vero nesciunt similique facilis ea nihil architecto totam odio?
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus adipisci corporis, debitis voluptates a esse, perferendis unde facilis maxime, sequi eius iure. Harum accusamus voluptatibus molestias illum ea cupiditate eveniet.
+                    </p>
                 </div>
             </div>
         </>
