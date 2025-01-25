@@ -14,17 +14,17 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className="w-full max-w-[1120px] flex flex-col mx-auto pb-12">
+            <div className="w-full max-w-[1120px] flex flex-col mx-auto pb-12 px-4">
                 <Header />
                 <Link
-                    className="flex w-full max-w-fit px-4 font-bold text-zinc-900 hover:text-zinc-600"
+                    className="flex w-full max-w-fit font-bold text-zinc-900 hover:text-zinc-600"
                     href="/"
                 >
                     <ArrowLeft className="mr-0 h-6 w-5" /> Voltar
                 </Link>
 
                 <div className="w-full h-full flex flex-col mt-8 ">
-                    <div className="flex w-full h-[334px] relative rounded-2xl overFlow-hidden">
+                    <div className="flex w-full h-56 sm:h-80 lg:h-[392px] relative rounded-2xl overFlow-hidden">
                         <Image
                             src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Nagi"
@@ -38,12 +38,12 @@ export default function Home() {
                 </div>
 
                 <div className="flex w-full h-[334px] flex-col mt-8">
-                    <h1 className="font-blod text-[40px] text-blue-600">Como desevolver um blog com Next.js</h1>
+                    <h1 className="font-bold text-2xl sm:text-4xl lg:text-[40px] text-blue-600">Como desevolver um blog com Next.js</h1>
                     <div>
                         <p className="font-bold text-zinc-900">Nagi Itoshi</p>
                         <p className="text-zinc-600 text-sm">31 de janeiro de 2025</p>
                     </div>
-                    <p className="text-zinc-600 mt-8">
+                    <p className="text-zinc-600 text-sm sm:text-base text-justify lg:text-left mt-4 sm:mt-8">
                         Lorem ipsum, dolor sit amet consecteturadipisicing elit. Dolore consequuntur, eligendi ipsam possimus voluptatum molestiae culpa omnis aperiam facilis officiis! Temporibus illo recusandae quisquam quas facilis architecto corrupti praesentium dolores.
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi expedita iusto natus recusandae necessitatibus tempore eligendi? Veniam velit nihil temporibus non. Aperiam repellendus quis tempore. Sed itaque tempore ab?
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam, dolorem veniam non distinctio cumque reiciendis, molestiae quibusdam tempora enim ad inventore a, dignissimos laborum beatae. Nemo repudiandae esse perferendis vel.
