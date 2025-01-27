@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import { Poppins } from 'next/font/google'
 import type { AppProps } from "next/app";
+import { ApolloProvider } from '@apollo/client';
+import { client } from '@/lib/apollo';
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -10,8 +12,10 @@ const poppins = Poppins({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${poppins.variable} fonts-sans`}>
-      <Component{...pageProps} />
-    </main>
+    <ApolloProvider client={client}>
+      <main className={`${poppins.variable} fonts-sans`}>
+        <Component{...pageProps} />
+      </main>
+    </ApolloProvider>
   )
 }

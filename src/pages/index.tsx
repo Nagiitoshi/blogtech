@@ -1,10 +1,54 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { Header } from "@/components/Header";
+import { ptBR } from "date-fns/locale/pt-BR"
 import Link from 'next/link'
 
+import { format } from "date-fns"
 
-export default function Home() {
+import { gql } from '@apollo/client';
+import { Header } from "@/components/Header";
+import { CardPost } from '@/components/CardPost'
+import { Empty } from '@/components/Empty';
+import { GetServerSideProps } from 'next'
+import { client } from '@/lib/apollo'
+
+
+
+const GET_ALL_POSTS = gql`
+    query GetAllPosts {
+      posts(orderBy: createdAt_DESC) {
+        id
+        slug
+        subtitle
+        title
+        createdAt
+        coverImage {
+          url
+        }
+        author {
+          name
+        }
+      }
+    }
+  `
+
+interface AllPosts {
+  posts: {
+    id: string;
+    slug: string;
+    subtitle: string;
+    title: string;
+    createdAt: string;
+    coverImage: {
+      url: string;
+    }
+    author: {
+      name: string;
+    }
+  }[]
+}
+
+export default function Home({ posts }: AllPosts) {
   return (
     <>
       <Head>
@@ -17,39 +61,62 @@ export default function Home() {
       <div className="w-full max-w-[1120px] flex flex-col mx-auto pb-12 px-4">
         <Header />
 
-        <Link
-        href="/post"
-        className="w-full h-full flex gap-4 lg:gap-8 flex-col sm:flex-row items-center justify-center mt-12 hover:brightness-75 transition-all">
-          <div className="flex flex-1 w-full h-full min-h [240px] md:min-h-[334px] relative rounded-2xl overFlow-hidden">
-            <Image
-              src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Nagi"
-              fill={true}
-              style={{
-                objectFit: "cover",
-                borderRadius: "50px"
-              }}
-            />
-          </div>
+        {posts ?
+          <>
+            <Link
+              href={`/post/${posts[0].slug}`}
+              className='w-full h-full flex gap-4 lg:gap-8 flex-col sm:flex-row items-center justify-center mt-12 hover:brightness-75 transition-all'
+            >
+              <div className='flex flex-1 w-full h-full min-h-[240px] md:min-h-[334px] relative rounded-2xl overflow-hidden'>
+                <Image
+                  src={posts[0].coverImage.url}
+                  alt=""
+                  fill={true}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
 
-          <div className="flex flex-1 h-full flex-col gap-3 lg:gap-6">
-            <h1 className="font-bold text-3xl md:text-[40px] text-blue-600">Como desevolver um blog com Next.js</h1>
-            <p className="text-zinc-600 text-sm md:text-base text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore consequuntur, eligendi ipsam possimus voluptatum molestiae culpa omnis aperiam facilis officiis! Temporibus illo recusandae quisquam quas facilis architecto corrupti praesentium dolores.</p>
+              <div className='flex flex-1 h-full flex-col gap-3 lg:gap-6'>
+                <h1 className='font-bold text-3xl md:text-[40px] text-blue-600'>{posts[0].title}</h1>
+                <p className='text-zinc-600 text-sm md:text-base text-justify lg:text-left'>{posts[0].subtitle}</p>
 
-            <div>
-              <p className="font-bold text-zinc-900">Nagi Itoshi</p>
-              <p className="text-zinc-600 text-sm">31 de janeiro de 2025</p>
+                <div>
+                  <p className='font-bold text-zinc-900 text-sm md:text-base'>{posts[0].author.name}</p>
+                  <p className='text-zinc-600 text-xs md:text-sm'>{format(new Date(posts[0].createdAt), "dd 'de' MMM 'de' yyyy", { locale: ptBR })}</p>
+                </div>
+              </div>
+            </Link>
+            <div className='flex flex-col items-center sm:grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8 mt-12'>
+              {posts.map((post, index) => {
+                if (index !== 0) {
+                  return (
+                    <CardPost
+                      key={post.id}
+                      title={post.title}
+                      author={post.author.name}
+                      createdAt={post.createdAt}
+                      subtitle={post.subtitle}
+                      urlImage={post.coverImage.url}
+                      slug={post.slug}
+                    />
+                  )
+                }
+              })}
             </div>
-          </div>
-        </Link>
-        <div className='flex flex-col items-center sm:grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8 mt-12'>
-          
-
-        </div>
-        <div></div>
-
+          </>
+          :
+          <Empty />
+        }
       </div>
     </>
   )
 }
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { data } = await client.query({ query: GET_ALL_POSTS })
+  return {
+    props: {
+      posts: data.posts,
+    }
+  }
+}
