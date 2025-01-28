@@ -85,17 +85,32 @@ export default function Post({ post }: PostProps) {
                     <h1 className='font-bold text-2xl sm:text-4xl lg:text-[40px] text-blue-600'>{post.title}</h1>
                     <div>
                         <p className='font-bold text-zinc-900'>{post.author.name}</p>
-                        <p className='text-zinc-600 text-sm'>{format(new Date(post.createdAt), "dd 'de' MMM 'de' yyyy", { locale: ptBR })}</p>
+                        <p className='text-blue-600 text-sm'>{format(new Date(post.createdAt), "dd 'de' MMM 'de' yyyy", { locale: ptBR })}</p>
                     </div>
 
-                    <div className='mt-4 sm:mt-8'>
+                    <div className="mt-4 sm:mt-8">
                         <RichText
                             content={post.content.json}
                             renderers={{
-                                p: ({ children }) => <p className='text-zinc-600 text-sm sm:text-base text-justify lg:text-left mt-1'>{children}</p>
+                                p: ({ children }) => (
+                                    <p className="text-zinc-600 text-sm sm:text-base text-justify lg:text-left mt-1">
+                                        {children}
+                                    </p>
+                                ),
+                                h3: ({ children }) => (
+                                    <h3 className="text-black text-lg font-semibold mt-4">
+                                        {children}
+                                    </h3>
+                                ),
+                                blockquote: ({ children }) => (
+                                    <blockquote className="border-l-4 border-blue-500 pl-4 italic text-zinc-700 text-sm sm:text-base mt-4">
+                                        {children}
+                                    </blockquote>
+                                ),
                             }}
                         />
                     </div>
+
                 </div>
             </div>
         </>
