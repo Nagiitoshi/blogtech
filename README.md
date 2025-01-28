@@ -36,6 +36,19 @@ O projeto está hospedado em [https://blogtech-psi.vercel.app/](https://blogtech
 ### 📥 Executar localmente
 
 1. **Clone o repositório:**
+   Clone o projeto diretamente do GitHub usando o comando:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+   git clone https://github.com/Nagiitoshi/blogtech.git
+   cd blogtech
+
+2. **instale as dependências:**
+   Execute o seguinte comando para instalar todas as dependências necessárias:
+   ```bash
+   npm install
+3. **Inicie o servidor de desenvolvimento:**
+    Para iniciar o servidor local, use o comando:
+    ```bash
+    npm run dev
+
+4. **Acesse a aplicação**: Abra o navegador e acesse http://localhost:3000.
+
