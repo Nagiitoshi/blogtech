@@ -1,17 +1,15 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { ptBR } from "date-fns/locale/pt-BR"
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { format } from "date-fns"
-
+import { ptBR } from "date-fns/locale/pt-BR";
+import { format } from "date-fns";
 import { gql } from '@apollo/client';
 import { Header } from "@/components/Header";
-import { CardPost } from '@/components/CardPost'
+import { CardPost } from '@/components/CardPost';
 import { Empty } from '@/components/Empty';
-import { GetServerSideProps } from 'next'
-import { client } from '@/lib/apollo'
-
+import { GetServerSideProps } from 'next';
+import { client } from '@/lib/apollo';
 
 
 const GET_ALL_POSTS = gql`
@@ -85,6 +83,7 @@ export default function Home({ posts }: AllPosts) {
                   <p className='text-zinc-600 text-xs md:text-sm'>{format(new Date(posts[0].createdAt), "dd 'de' MMM 'de' yyyy", { locale: ptBR })}</p>
                 </div>
               </div>
+              
             </Link>
             <div className='flex flex-col items-center sm:grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8 mt-12'>
               {posts.map((post, index) => {
