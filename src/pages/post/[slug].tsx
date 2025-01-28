@@ -107,6 +107,16 @@ export default function Post({ post }: PostProps) {
                                         {children}
                                     </blockquote>
                                 ),
+                                ul: ({ children }) => (
+                                    <ul className="list-disc pl-5 space-y-2 text-zinc-900 text-sm sm:text-base">
+                                        {children}
+                                    </ul>
+                                ),
+                                li: ({ children }) => (
+                                    <li className="bg-zinc-100 p-2 rounded-lg shadow-sm">
+                                        {children}
+                                    </li>
+                                ),
                             }}
                         />
                     </div>
